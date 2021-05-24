@@ -7,7 +7,7 @@ jobs:
     strategy:
         fail-fast: false
         matrix:
-          destination: iOS #[iOS, macOS, watchOS]
+          destination: [iOS] #[iOS, macOS, watchOS]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
