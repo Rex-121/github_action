@@ -7,7 +7,7 @@ jobs:
     strategy:
         fail-fast: false
         matrix:
-          destination: [iOS, macOS, watchOS]
+          destination: iOS #[iOS, macOS, watchOS]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
 
           case "${{ matrix.destination }}" in
           "iOS")
-            DESTINATION="platform=iOS Simulator,name=iPhone 11 Pro"
+            DESTINATION="platform=iOS Simulator,name=iPhone 12 Pro"
             ;;
           "watchOS")
             ACTION=build
@@ -41,7 +41,7 @@ jobs:
           xcrun instruments -s
 
           xcodebuild -showdestinations \
-            -scheme "github_action"
+            -scheme ${SCHEME}
 
           xcodebuild clean ${ACTION} \
             -destination "${DESTINATION}" \
