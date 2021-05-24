@@ -5,6 +5,7 @@ jobs:
     name: ATest
     runs-on: macos-latest
     strategy:
+        fail-fast: false
         matrix:
           destination: [iOS, macOS, watchOS]
     steps:
