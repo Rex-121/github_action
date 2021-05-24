@@ -18,7 +18,7 @@ jobs:
 
           case "${{ matrix.destination }}" in
           "iOS")
-            DESTINATION="platform=iOS Simulator,name=iPhone 12 Pro"
+            DESTINATION="platform=iOS Simulator,name=iPhone 11 Pro"
             ;;
           "watchOS")
             ACTION=build
