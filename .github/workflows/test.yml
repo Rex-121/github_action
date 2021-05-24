@@ -1,0 +1,41 @@
+on: push
+name: TestAction
+jobs:
+  aTest:
+    name: ATest
+    runs-on: macos-latest
+    strategy:
+        matrix:
+          destination: [iOS, macOS, watchOS]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Test via xcodebuild
+        run: |
+          ACTION=test
+          DESTINATION=unknown
+          SCHEME=github_action
+
+          case "${{ matrix.destination }}" in
+          "iOS")
+            DESTINATION="platform=iOS Simulator,name=iPhone 12 Pro"
+            ;;
+          "watchOS")
+            ACTION=build
+            DESTINATION="platform=watchOS Simulator,name=Apple Watch Series 6 - 44mm"
+            ;;
+          "macOS")
+            DESTINATION="platform=macOS,arch=x86_64"
+            ;;
+          *)
+            echo "Unknown destination."
+            exit 1
+            ;;
+          esac
+
+          xcodebuild clean ${ACTION} \
+            -destination "${DESTINATION}" \
+            -scheme ${SCHEME} \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            ONLY_ACTIVE_ARCH=YES
