@@ -33,6 +33,9 @@ jobs:
             ;;
           esac
 
+          xcodebuild -showdestinations \
+            -scheme "github_action"
+
           xcodebuild clean ${ACTION} \
             -destination "${DESTINATION}" \
             -scheme ${SCHEME} \
