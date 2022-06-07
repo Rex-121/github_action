@@ -1,6 +1,16 @@
 on: push
 name: TestAction
 jobs:
+  CocoaPods:
+    name: CocoaPods
+    runs-on: macos-latest
+    strategy:
+        fail-fast: false
+    steps:
+      - name: Install
+        run: brew install cocoapods
+      - name: Check
+        run: cocoapods repo list
   aTest:
     name: ATest
     runs-on: macos-latest
@@ -10,7 +20,7 @@ jobs:
           destination: [iOS] #[iOS, macOS, watchOS]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
      # - name: Selected Xcode version
      #   uses: maxim-lobanov/setup-xcode@v1.2.3
       #  with:
