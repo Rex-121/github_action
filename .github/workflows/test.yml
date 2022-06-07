@@ -46,8 +46,6 @@ jobs:
             ;;
           esac
 
-#          xcrun instruments -s
-
           xcodebuild -showdestinations \
             -scheme ${SCHEME}
 
