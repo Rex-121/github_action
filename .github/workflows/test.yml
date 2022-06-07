@@ -8,7 +8,7 @@ jobs:
         fail-fast: false
     steps:
       - name: Check
-        run: cocoapods repo list
+        run: pod repo list
   aTest:
     name: ATest
     runs-on: macos-latest
